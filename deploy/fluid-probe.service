@@ -1,0 +1,20 @@
+[Unit]
+Description=Fluid Debian Probe
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=fluid-probe
+Group=fluid-probe
+ExecStart=/usr/local/bin/fluid-probe -config /etc/fluid-probe/config.yml -credentials /etc/fluid-probe/credentials.yaml -enrollment-env /etc/fluid-probe/enrollment.env
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/fluid-probe /etc/fluid-probe
+WorkingDirectory=/var/lib/fluid-probe
+
+[Install]
+WantedBy=multi-user.target

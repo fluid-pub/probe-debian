@@ -1,0 +1,39 @@
+entities:
+  debian_filesystem:
+    description: "Linux filesystem usage (one row per mountpoint)"
+    fields:
+      id:
+        type: "id"
+        description: "Stable id hostname:mountpoint"
+        primary: true
+      fluid:
+        type: "id"
+        description: "SHA256 hash of id"
+      hostname:
+        type: "string"
+        description: "Host name"
+      mountpoint:
+        type: "string"
+        description: "Mount path"
+      fstype:
+        type: "string"
+        description: "Filesystem type"
+      available_percent:
+        type: "number"
+        description: "Free space percentage"
+      used_percent:
+        type: "number"
+        description: "Used space percentage"
+      total:
+        type: "integer"
+        description: "Total bytes"
+      free:
+        type: "integer"
+        description: "Free bytes"
+  debian_system_metrics:
+    description: "Aggregated Linux system metrics snapshot"
+    fields:
+      id:
+        type: "id"
+        description: "Host-level metrics blob"
+        primary: true

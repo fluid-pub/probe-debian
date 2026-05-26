@@ -1,0 +1,35 @@
+probe:
+  name: debian-probe-prod-01
+  host_id: ${HOST_ID}
+  hostname: ${HOSTNAME}
+  version: 0.1.0
+
+# After enrollment, prefer credentials file (/etc/fluid-probe/credentials.yaml) for secrets.
+auth:
+  organization_uuid: ${FLUID_ORG_UUID}
+  token: ${FLUID_PROBE_TOKEN}
+
+controlplane:
+  base_url: https://controlplane.example.com
+
+collection:
+  system_interval: 30s
+  files_interval: 60s
+  apt_interval: 30m
+  installed_packages_interval: 1h
+  services_interval: 30m
+  request_timeout: 10s
+  max_package_items: 200
+  max_hash_file_size_bytes: 5242880
+
+spool:
+  path: /var/lib/fluid-probe/spool.jsonl
+  max_entries: 2000
+
+files:
+  - path: /etc/ssh/sshd_config
+  - path: /etc/fstab
+
+directories:
+  - path: /etc/systemd/system
+    recursive: false
