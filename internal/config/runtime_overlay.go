@@ -22,7 +22,7 @@ type RuntimeOverlay struct {
 func ParseRuntimeResponse(data []byte) (*RuntimeOverlay, string, error) {
 	var raw struct {
 		RuntimeConfig *RuntimeOverlay `json:"runtime_config"`
-		ConfigVersion string            `json:"config_version"`
+		ConfigVersion string          `json:"config_version"`
 		Data          *struct {
 			Entities []core.EntityConfig `json:"entities"`
 		} `json:"data"`

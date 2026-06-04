@@ -17,4 +17,4 @@ jobs:
       workload_kind: probe
       binary_name: debian-probe
       core_repository: fluid-pub/probe-core
-      core_ref: "0.2.0"
+      core_ref: "0.2.1"

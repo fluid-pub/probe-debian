@@ -13,7 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- **probe-core** pinned to **`0.2.0`** (CI/release `core_ref` and submodule commit).
+- **probe-core** pinned to **`0.2.1`** (CI/release `core_ref` and submodule commit).
 
 ## [0.1.0] - 2026-05-26
 

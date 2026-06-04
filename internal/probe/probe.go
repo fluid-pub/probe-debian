@@ -40,9 +40,9 @@ func New(base *config.Runtime, cpClient *controlplane.HTTPClient, sync *controlp
 	}
 	baseCopy := base.Raw
 	return &Probe{
-		baseCfg: &baseCopy,
-		cfg:     base,
-		cpClient:   cpClient,
+		baseCfg:     &baseCopy,
+		cfg:         base,
+		cpClient:    cpClient,
 		runtimeSync: sync,
 		shipper: shipper.New(
 			base.Raw.Controlplane.BaseURL,
