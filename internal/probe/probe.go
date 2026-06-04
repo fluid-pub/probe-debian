@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"log"
+	"strings"
 	"sync"
 	"time"
 
@@ -187,6 +188,7 @@ func (p *Probe) runSystemLoop(ctx context.Context) {
 				log.Printf("system collect failed: %v", err)
 				continue
 			}
+			snap.ID = stableHostID(rt)
 			payload := p.baseStatePayload(rt, p.systemEntities(rt, snap))
 			p.sendWithSpool(ctx, payload)
 		}
@@ -304,6 +306,16 @@ func (p *Probe) runServicesLoop(ctx context.Context) {
 			p.sendWithSpool(ctx, payload)
 		}
 	}
+}
+
+func stableHostID(rt *config.Runtime) string {
+	if rt == nil {
+		return ""
+	}
+	if id := strings.TrimSpace(rt.Raw.Probe.HostID); id != "" {
+		return id
+	}
+	return strings.TrimSpace(rt.Raw.Probe.Hostname)
 }
 
 func (p *Probe) systemEntities(rt *config.Runtime, snap *collect.SystemSnapshot) map[string]interface{} {
