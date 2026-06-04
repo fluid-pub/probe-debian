@@ -3,7 +3,7 @@ module fluid/probes/debian
 go 1.23
 
 require (
-	fluid/probes/core v0.1.0
+	fluid/probes/core v0.2.0
 	github.com/shirou/gopsutil/v3 v3.24.5
 	gopkg.in/yaml.v3 v3.0.1
 )
