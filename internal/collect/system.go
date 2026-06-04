@@ -10,6 +10,8 @@ import (
 )
 
 type SystemSnapshot struct {
+	// ID is the stable host key (host_id or hostname) for control plane entity diff; set before push.
+	ID            string        `json:"id,omitempty"`
 	CPU           CPUInfo       `json:"cpu"`
 	Memory        MemoryInfo    `json:"memory"`
 	Disks         []DiskMetric  `json:"disks"`

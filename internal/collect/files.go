@@ -11,6 +11,7 @@ import (
 )
 
 type FileCheck struct {
+	ID          string    `json:"id"`
 	Path        string    `json:"path"`
 	Kind        string    `json:"kind"`
 	Exists      bool      `json:"exists"`
@@ -29,12 +30,13 @@ func CollectFile(path string, maxHashSize int64) FileCheck {
 	info, err := os.Stat(path)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return FileCheck{Path: path, Kind: "file", Exists: false}
+			return FileCheck{ID: path, Path: path, Kind: "file", Exists: false}
 		}
-		return FileCheck{Path: path, Kind: "file", Exists: false, Error: err.Error()}
+		return FileCheck{ID: path, Path: path, Kind: "file", Exists: false, Error: err.Error()}
 	}
 
 	check := FileCheck{
+		ID:         path,
 		Path:       path,
 		Kind:       "file",
 		Exists:     true,
@@ -69,12 +71,13 @@ func CollectDirectory(path string, recursive bool, maxHashSize int64) FileCheck 
 	info, err := os.Stat(path)
 	if err != nil {
 		if os.IsNotExist(err) {
-			return FileCheck{Path: path, Kind: "directory", Exists: false}
+			return FileCheck{ID: path, Path: path, Kind: "directory", Exists: false}
 		}
-		return FileCheck{Path: path, Kind: "directory", Exists: false, Error: err.Error()}
+		return FileCheck{ID: path, Path: path, Kind: "directory", Exists: false, Error: err.Error()}
 	}
 
 	check := FileCheck{
+		ID:         path,
 		Path:       path,
 		Kind:       "directory",
 		Exists:     true,

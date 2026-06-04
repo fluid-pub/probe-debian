@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Set stable `id` on `debian_system_metrics` (host_id or hostname) and on file/directory checks (path) before push so control plane snapshot diff does not emit false `created` / `deleted` events every ingest.
+
 ## [0.2.0] - 2026-06-04
 
 ### Added
