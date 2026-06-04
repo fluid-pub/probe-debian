@@ -124,7 +124,7 @@ func Load(path string) (*Runtime, error) {
 
 func applyDefaults(cfg *Config) {
 	if cfg.Probe.Version == "" {
-		cfg.Probe.Version = "0.1.0"
+		cfg.Probe.Version = "0.2.0"
 	}
 	if cfg.Probe.Hostname == "" {
 		if host, err := os.Hostname(); err == nil {

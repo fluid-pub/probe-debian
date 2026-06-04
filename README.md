@@ -57,7 +57,7 @@ The probe sends JSON (often wrapped in a top-level `state` key) compatible with 
 {
   "state": {
     "probe": "debian-probe-prod-01",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "timestamp": "2026-04-07T10:11:12Z",
     "identity": {
       "host_id": "vm-123",
