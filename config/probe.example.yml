@@ -2,7 +2,7 @@ probe:
   name: debian-probe-prod-01
   host_id: ${HOST_ID}
   hostname: ${HOSTNAME}
-  version: 0.1.0
+  version: 0.2.0
 
 # After enrollment, prefer credentials file (/etc/fluid-probe/credentials.yaml) for secrets.
 auth:
