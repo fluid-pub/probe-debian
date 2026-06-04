@@ -1,0 +1,35 @@
+# Example runtime_config for the control plane (Dashboard → Probes → Configure).
+# Paste as YAML in the runtime_config field. Secrets stay in credentials.yaml on the host.
+
+data:
+  entities:
+    - name: debian_system_metrics
+      refresh_interval: "30s"
+    - name: debian_filesystem
+      refresh_interval: "30s"
+    - name: debian_file_checks
+      refresh_interval: "60s"
+    - name: debian_package_updates
+      refresh_interval: "30m"
+    - name: debian_installed_packages
+      refresh_interval: "1h"
+    - name: debian_systemd_services
+      refresh_interval: "30m"
+
+collection:
+  system_interval: 30s
+  files_interval: 60s
+  apt_interval: 30m
+  installed_packages_interval: 1h
+  services_interval: 30m
+  request_timeout: 10s
+  max_package_items: 200
+  max_hash_file_size_bytes: 5242880
+
+files:
+  - path: /etc/ssh/sshd_config
+  - path: /etc/fstab
+
+directories:
+  - path: /etc/systemd/system
+    recursive: false

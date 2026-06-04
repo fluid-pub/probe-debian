@@ -6,10 +6,13 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"strings"
 	"syscall"
 	"time"
 
+	"fluid/probes/core"
+	"fluid/probes/core/controlplane"
 	"fluid/probes/core/enroll"
 	"fluid/probes/debian/internal/config"
 	"fluid/probes/debian/internal/probe"
@@ -92,9 +95,26 @@ func main() {
 		log.Fatalf("invalid configuration: %v", err)
 	}
 
-	p, err := probe.New(rt)
+	cpClient, err := controlplane.NewHTTPClient(
+		cfg.Controlplane.BaseURL,
+		cfg.Auth.OrganizationUUID,
+		cfg.Auth.Token,
+		cfg.Probe.Name,
+		cfg.Probe.Version,
+	)
+	if err != nil {
+		log.Fatalf("control plane client: %v", err)
+	}
+	runtimeSync := controlplane.NewRuntimeSync(cpClient)
+
+	p, err := probe.New(rt, cpClient, runtimeSync)
 	if err != nil {
 		log.Fatalf("failed to initialize probe: %v", err)
+	}
+
+	schemaPath := ""
+	if _, err := core.LoadSchemaFromConfigDir(*configPath); err == nil {
+		schemaPath = filepath.Join(filepath.Dir(*configPath), "schema.yml")
 	}
 
 	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
@@ -109,7 +129,7 @@ func main() {
 		}
 	}()
 
-	if err := p.Start(ctx); err != nil {
+	if err := p.Start(ctx, schemaPath); err != nil {
 		log.Printf("probe exited with error: %v", err)
 		os.Exit(1)
 	}

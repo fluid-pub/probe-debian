@@ -37,14 +37,14 @@ type ControlplaneConfig struct {
 }
 
 type CollectionConfig struct {
-	SystemInterval            string `yaml:"system_interval"`
-	FilesInterval             string `yaml:"files_interval"`
-	APTInterval               string `yaml:"apt_interval"`
-	InstalledPackagesInterval string `yaml:"installed_packages_interval"`
-	ServicesInterval          string `yaml:"services_interval"`
-	RequestTimeout            string `yaml:"request_timeout"`
-	MaxPackageItems           int    `yaml:"max_package_items"`
-	MaxHashFileSize           int64  `yaml:"max_hash_file_size_bytes"`
+	SystemInterval            string `yaml:"system_interval" json:"system_interval,omitempty"`
+	FilesInterval             string `yaml:"files_interval" json:"files_interval,omitempty"`
+	APTInterval               string `yaml:"apt_interval" json:"apt_interval,omitempty"`
+	InstalledPackagesInterval string `yaml:"installed_packages_interval" json:"installed_packages_interval,omitempty"`
+	ServicesInterval          string `yaml:"services_interval" json:"services_interval,omitempty"`
+	RequestTimeout            string `yaml:"request_timeout" json:"request_timeout,omitempty"`
+	MaxPackageItems           int    `yaml:"max_package_items" json:"max_package_items,omitempty"`
+	MaxHashFileSize           int64  `yaml:"max_hash_file_size_bytes" json:"max_hash_file_size_bytes,omitempty"`
 }
 
 type SpoolConfig struct {
@@ -53,12 +53,12 @@ type SpoolConfig struct {
 }
 
 type FileRule struct {
-	Path string `yaml:"path"`
+	Path string `yaml:"path" json:"path"`
 }
 
 type DirectoryRule struct {
-	Path      string `yaml:"path"`
-	Recursive bool   `yaml:"recursive"`
+	Path      string `yaml:"path" json:"path"`
+	Recursive bool   `yaml:"recursive" json:"recursive"`
 }
 
 type Runtime struct {
